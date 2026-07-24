@@ -6,11 +6,20 @@
 <title>Menu | Moti Mahal Deluxe</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
-<h1>Our Veg Menu</h1>
-<a href="index.html">⬅ Home</a>
+<h1>Moti Mahal Deluxe</h1>
+<p>Pure Veg Restaurant</p>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="menu.html">Menu</a>
+<a href="cart.html">Cart 🛒</a>
+<a href="contact.html">Contact</a>
+</nav>
+
 </header>
 
 <section class="menu">
@@ -18,35 +27,69 @@
 <div class="card">
 <h2>Paneer Butter Masala</h2>
 <p>₹250</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Paneer Butter Masala',250)">
+Add to Cart
+</button>
 </div>
 
 <div class="card">
 <h2>Kadai Paneer</h2>
 <p>₹260</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Kadai Paneer',260)">
+Add to Cart
+</button>
+</div>
+
+<div class="card">
+<h2>Shahi Paneer</h2>
+<p>₹280</p>
+<button onclick="addToCart('Shahi Paneer',280)">
+Add to Cart
+</button>
 </div>
 
 <div class="card">
 <h2>Dal Makhani</h2>
 <p>₹220</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Dal Makhani',220)">
+Add to Cart
+</button>
 </div>
 
 <div class="card">
 <h2>Veg Biryani</h2>
 <p>₹280</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Veg Biryani',280)">
+Add to Cart
+</button>
 </div>
 
 <div class="card">
 <h2>Butter Naan</h2>
 <p>₹50</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Butter Naan',50)">
+Add to Cart
+</button>
 </div>
 
 </section>
 
-<script src="script.js"></script>
+<script>
+function addToCart(name, price) {
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+name: name,
+price: price
+});
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+alert(name + " added to cart ✅");
+
+}
+</script>
+
 </body>
 </html>
