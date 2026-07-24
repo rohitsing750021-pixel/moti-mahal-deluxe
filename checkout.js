@@ -1,31 +1,40 @@
-document
-.getElementById("checkoutForm")
+document.getElementById("checkoutForm")
 .addEventListener("submit",function(e){
 
 e.preventDefault();
 
-let name=this.elements[0].value;
+let name=document.getElementById("name").value;
 
-let phone=this.elements[1].value;
+let phone=document.getElementById("phone").value;
 
-let address=this.elements[2].value;
+let address=document.getElementById("address").value;
 
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
 
-let order="🍽️ *New Order*%0A%0A";
+let message="🍽️ Moti Mahal Deluxe Order\n\n";
 
 cart.forEach(item=>{
 
-order+=`${item.name} - ₹${item.price}%0A`;
+message+=`${item.name} - ₹${item.price}\n`;
 
 });
 
-order+=`%0A👤 Name: ${name}`;
+let total=0;
 
-order+=`%0A📞 Phone: ${phone}`;
+cart.forEach(item=>{
 
-order+=`%0A🏠 Address: ${address}`;
+total+=item.price;
 
-window.open("https://wa.me/917500216856?text="+order);
+});
+
+message+="\nTotal : ₹"+total;
+
+message+="\n\nName : "+name;
+
+message+="\nPhone : "+phone;
+
+message+="\nAddress : "+address;
+
+window.open("https://wa.me/917500216856?text="+encodeURIComponent(message));
 
 });
